@@ -10,13 +10,13 @@ def prompt(message)
 end
 
 def integer?(x)
-  return true if x.to_i.to_s == x # checks if x is an integer, returns true if true
-  return false # returns false if x is not an integer
+  return true if x.to_i.to_s == x # checks if x is an integer
+  false # returns false if x is not an integer
 end
 
 def float?(x)
-  return true if x.to_f.to_s == x # checks if x is a float, returns true if true
-  return false # returns false if x is not a float
+  return true if x.to_f.to_s == x # checks if x is a float
+  false # returns false if x is not a float
 end
 
 keep_going = true
@@ -24,8 +24,8 @@ while keep_going == true
   num1 = ''
   num2 = ''
   prompt "Welcome to the Calculator!"
-  
-  loop do 
+
+  loop do
     prompt "What's the first number?"
     num1 = gets.chomp
     if integer?(num1)
@@ -38,7 +38,7 @@ while keep_going == true
     prompt "Invalid input! Please enter an integer or a float value."
   end
 
-  loop do 
+  loop do
     prompt "What's the second number?"
     num2 = gets.chomp
     if integer?(num2)
@@ -77,16 +77,17 @@ while keep_going == true
   end
 
   prompt "The answer is #{result}"
-  
-  loop do 
+
+  loop do
     prompt "Do you want to calculate another number? (Y/N)"
     answer = gets.chomp.downcase
     break if answer == 'y'
     if answer == 'n'
-      keep_going = false 
+      keep_going = false
       break
     end
     prompt "Invalid response! Please enter Y or N."
   end
+
 prompt "Thanks for using the calculator!"
 end
