@@ -10,28 +10,44 @@ def prompt(message)
 end
 
 def integer?(x)
-  return true if x == '0'
-  return true if x.to_i.to_s == x
-  return false
+  return true if x.to_i.to_s == x # checks if x is an integer, returns true if true
+  return false # returns false if x is not an integer
+end
+
+def float?(x)
+  return true if x.to_f.to_s == x # checks if x is a float, returns true if true
+  return false # returns false if x is not a float
 end
 
 keep_going = true
 while keep_going == true
-  num1 = 0
-  num2 = 0
+  num1 = ''
+  num2 = ''
   prompt "Welcome to the Calculator!"
   
   loop do 
     prompt "What's the first number?"
     num1 = gets.chomp
-    break if integer?(num1)
+    if integer?(num1)
+      num1 = num1.to_i
+      break
+    elsif float?(num1)
+      num1 = num1.to_f
+      break
+    end
     prompt "Invalid input! Please enter an integer or a float value."
   end
 
   loop do 
     prompt "What's the second number?"
     num2 = gets.chomp
-    break if integer?(num2)
+    if integer?(num2)
+      num2 = num2.to_i
+      break
+    elsif float?(num2)
+      num2 = num2.to_f
+      break
+    end
     prompt "Invalid input! Please enter an integer or a float value."
   end
 
@@ -44,14 +60,19 @@ while keep_going == true
   MSG
 
   prompt operator_message
-  operator = gets.chomp
+  operator = ''
+  loop do
+    operator = gets.chomp
+    break if operator == '1' || operator == '2' || operator == '3' || operator == '4'
+    prompt "Invalid input! Please enter 1, 2, 3, or 4."
+  end
 
   case operator
 
-  when "1" then result = num1.to_i + num2.to_i
-  when "2" then result = num1.to_i - num2.to_i
-  when "3" then result = num1.to_i * num2.to_i
-  when "4" then result = num1.to_f / num2.to_f
+  when "1" then result = num1 + num2
+  when "2" then result = num1 - num2
+  when "3" then result = num1 * num2
+  when "4" then result = num1 / num2
 
   end
 
