@@ -1,17 +1,19 @@
 VALID_CHOICES = ["rock", "paper", "scissors"]
 
-def display_results(choice, computer_choice)
-  if (choice == "rock" && computer_choice == "scissors") ||
-    (choice == "paper" && computer_choice == "rock") ||
-    (choice == "scissors" && computer_choice == "paper")
+def display_results(player, computer)
+  if win?(player, computer)
     prompt "You won!"
-  elsif (choice == "rock" && computer_choice == "paper") ||
-        (choice == "paper" && computer_choice == "scissors") ||
-        (choice == "scissors" && computer_choice == "rock")
+  elsif win?(computer, player)
     prompt "Computer won!"
   else
     prompt "Tie game!"
   end
+end
+
+def win?(first, second)
+  (first == "rock" && second == "scissors") ||
+    (first == "paper" && second == "rock") ||
+    (first == "scissors" && second == "paper")
 end
 
 def prompt(message)
@@ -21,7 +23,7 @@ end
 loop do
   choice = ''
   loop do
-    prompt "Choose one: #{VALID_CHOICES.join(", ")}"
+    prompt "Choose one: #{VALID_CHOICES.join(', ')}"
     choice = gets.chomp
 
     break if VALID_CHOICES.include?(choice)
