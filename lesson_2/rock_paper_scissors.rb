@@ -1,26 +1,22 @@
 VALID_CHOICES = ["rock", "paper", "scissors", "lizard", "spock"]
-WIN_CONDITIONS = {"rock" => ["scissors", "lizard"], 
-                  "paper" => ["rock", "spock"],
-                  "scissors" => ["paper", "lizard"],
-                  "lizard" => ["spock", "paper"],
-                  "spock" => ["rock", "scissors"]}
+WIN_CONDITIONS = { "rock" => ["scissors", "lizard"],
+                   "paper" => ["rock", "spock"],
+                   "scissors" => ["paper", "lizard"],
+                   "lizard" => ["spock", "paper"],
+                   "spock" => ["rock", "scissors"] }
 player_win_total = 0
 computer_win_total = 0
 
 def display_results(winner, player_win_total, computer_win_total)
   if winner == "player"
     prompt "You won!"
-    prompt "Player total wins: #{player_win_total}"
-    prompt "Computer total wins: #{computer_win_total}"
   elsif winner == "computer"
     prompt "Computer won!"
-    prompt "Player total wins: #{player_win_total}"
-    prompt "Computer total wins: #{computer_win_total}"
   else
     prompt "Tie game!"
-    prompt "Player total wins: #{player_win_total}"
-    prompt "Computer total wins: #{computer_win_total}"
   end
+  prompt "Player total wins: #{player_win_total}"
+  prompt "Computer total wins: #{computer_win_total}"
 end
 
 def win?(first, second)
@@ -59,7 +55,7 @@ loop do
   computer_choice = VALID_CHOICES.sample
 
   prompt "You chose #{choice}; Computer chose: #{computer_choice}."
-  
+
   if win?(choice, computer_choice)
     player_win_total += 1
     display_results("player", player_win_total, computer_win_total)
